@@ -54,7 +54,7 @@ public class Game extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		player.update();
-		c.update();
+		c.update(player);
 		repaint();
 	}
 

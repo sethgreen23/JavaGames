@@ -2,6 +2,7 @@ package com.dridichaith.src.objects;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
@@ -16,7 +17,10 @@ public class Player extends Human{
 
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
+
+		rect = makeRectangle();
 		g.drawImage(getPlayer("player"), getX(),getY(),null);
+		g.draw(rect);
 		
 	}
 	
@@ -27,6 +31,7 @@ public class Player extends Human{
 	public void update() {
 		// TODO Auto-generated method stub
 		wallCollision();
+		
 	}
 	
 	private void wallCollision() {

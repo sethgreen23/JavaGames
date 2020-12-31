@@ -2,6 +2,7 @@ package com.dridichaith.src.objects;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
@@ -14,8 +15,9 @@ public class Enemy extends Human {
 	}
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
+		rect = makeRectangle();
 		g.drawImage(getPlayer("enemy"), getX(),getY(),null);
-		
+		g.draw(rect);
 	}
 	
 	public Image getPlayer(String player) {
