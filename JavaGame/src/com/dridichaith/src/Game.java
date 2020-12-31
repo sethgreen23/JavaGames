@@ -13,17 +13,23 @@ import javax.swing.Timer;
 
 import com.dridichaith.src.objects.Enemy;
 import com.dridichaith.src.objects.Player;
-import com.dridichaith.src.controller.Controller;
+import com.dridichaith.src.controller.EnemyController;
 import com.dridichaith.src.input.KeyInput;
 public class Game extends JPanel implements ActionListener{
+	//diffine the fields of our game class
 	Timer timer;
 	Player player;
-	Controller c;
+	EnemyController c;
 	public Game() {
+		//make the game panel focussable from the beggining
 		setFocusable(true);
+		//set the player in the screen
 		player = new Player(100,100);
+		//add a key listener on the player to 
+		//controle its movement with direction arrow keys
 		addKeyListener(new KeyInput(player));
-		c = new Controller();
+		//create enemy controller that will controle bunch of enemies
+		c = new EnemyController();
 		c.add(new Enemy(100,60));
 		c.add(new Enemy(300,140));
 		c.add(new Enemy(400,200));
@@ -32,6 +38,8 @@ public class Game extends JPanel implements ActionListener{
 		c.add(new Enemy(200,290));
 		c.add(new Enemy(350,350));
 		c.add(new Enemy(500,400));
+		//the timer is an infinite loop for our game
+		//Game jpanel use it as trigger for drawing its frames 
 		timer = new Timer(10,this);
 		timer.start();
 		
@@ -43,9 +51,10 @@ public class Game extends JPanel implements ActionListener{
 		g2d.drawImage(getBackgroundImage(), 0, 0, null);
 		//draw the player
 		player.draw(g2d);
+		//draw the enemies
 		c.draw(g2d);
 	}
-	
+	//set the image of the background
 	public Image getBackgroundImage() {
 		ImageIcon image = new ImageIcon(getClass().getResource("/images/background1.png"));
 		return image.getImage();
@@ -53,6 +62,11 @@ public class Game extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		//this function will make sure to repaint
+		// and update the player and enemies 
+		//position,check the collision and make sure
+		//the object stay in the boundories of the frame
+		//every 10 milliseconds
 		player.update();
 		c.update(player);
 		repaint();

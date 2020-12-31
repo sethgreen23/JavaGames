@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import com.dridichaith.src.MainClass;
 
 public class Player extends Human{
+	//the player have a standar speed of 5
 	public int speed=5;
 	public Player(int x, int y) {
 		super(x, y);
@@ -17,13 +18,18 @@ public class Player extends Human{
 
 	public void draw(Graphics2D g) {
 		// TODO Auto-generated method stub
-
-		rect = makeRectangle();
+		//every 10 millisecond we change the cordinate 
+		//of the rectangle with the cordinate of the player
+		rect.x = getX();
+		rect.y=getY();
+		//draw the image of the player
 		g.drawImage(getPlayer("player"), getX(),getY(),null);
+		//draw the rectangle on a new position
 		g.draw(rect);
 		
 	}
 	
+	//get the player image from the resource
 	public Image getPlayer(String player) {
 		ImageIcon image = new ImageIcon(getClass().getResource("/images/"+player+".png"));
 		return image.getImage();
@@ -34,6 +40,8 @@ public class Player extends Human{
 		
 	}
 	
+	//this method take care of detection 
+	//of the collision of the player and the wall
 	private void wallCollision() {
 		// TODO Auto-generated method stub
 		if(getX()<0) {
@@ -49,7 +57,9 @@ public class Player extends Human{
 			setX(MainClass.WIDTH-45);
 		}
 	}
-
+	//this function will make sure of changing
+	//the position of the player when we press on the direction
+	//keys
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(key==KeyEvent.VK_UP) {
@@ -62,7 +72,8 @@ public class Player extends Human{
 			setX(5,true);
 		}
 	}
-	
+	//this will take care to not change the position 
+	//of the player when we release the keys
 	public void keyRelease(KeyEvent e) {
 		int key = e.getKeyCode();
 		if(key==KeyEvent.VK_UP) {

@@ -6,6 +6,8 @@ import java.awt.event.KeyListener;
 import com.dridichaith.src.objects.Player;
 
 public class KeyInput implements KeyListener{
+	//the keylistener will listen to the player movement
+	//when it is pressed and when it is released
 	Player p;
 	public KeyInput(Player p) {
 		this.p = p;

@@ -1,5 +1,6 @@
 package com.dridichaith.src.objects;
-
+// this class represent the position object in an 
+//euclidean space
 public abstract class GlobalPosition {
 	private int x;
 	private int y;
@@ -12,7 +13,9 @@ public abstract class GlobalPosition {
 	public int getX() {
 		return x;
 	}
-
+	//here we set the x position depending oon the 
+	//flag if the flag is true we add speed otherwise
+	//we subtract speed
 	public void setX(int speed,boolean flag) {
 		if(flag) {
 			this.x+=speed;
